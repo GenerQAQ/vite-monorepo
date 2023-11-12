@@ -1,0 +1,10 @@
+/* 只需要重写你需要的即可 */
+@forward 'element-plus/theme-chalk/src/dark/var.scss' with (
+    $colors: (
+        'primary': (
+            'base': red,
+        ),
+    ),
+);
+
+@use 'element-plus/theme-chalk/src/dark/css-vars.scss';

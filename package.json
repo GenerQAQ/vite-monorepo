@@ -1,0 +1,80 @@
+{
+    "name": "vite-monorepo",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "start": "node ./scripts/start.js",
+        "build": "vue-tsc && vite build",
+        "build:all": "node ./scripts/build.js",
+        "new": "node ./scripts/new.js",
+        "preview": "vite preview",
+        "lint": "eslint . --ext .{js,jsx,vue,ts,tsx} --fix",
+        "lint:style": "stylelint **/*.{vue,css} --ignore-path .gitignore --fix",
+        "prepare": "husky install",
+        "test": "vitest"
+    },
+    "lint-staged": {
+        "*.{js,jsx,vue,ts,tsx}": [
+            "eslint"
+        ],
+        "*.{css,less,postcss,scss,sass,vue}": [
+            "stylelint"
+        ]
+    },
+    "dependencies": {
+        "@element-plus/icons-vue": "^2.1.0",
+        "@vueuse/core": "^10.5.0",
+        "axios": "^1.6.1",
+        "element-plus": "^2.4.2",
+        "normalize.css": "^8.0.1",
+        "nprogress": "^0.2.0",
+        "pinia": "^2.1.7",
+        "vue": "^3.3.8",
+        "vue-router": "^4.2.5"
+    },
+    "devDependencies": {
+        "@babel/eslint-parser": "^7.23.3",
+        "@babel/eslint-plugin": "^7.22.10",
+        "@ecomfe/eslint-config": "^8.0.0",
+        "@ecomfe/stylelint-config": "^1.1.2",
+        "@types/mockjs": "^1.0.10",
+        "@types/node": "^20.9.0",
+        "@types/nprogress": "^0.2.3",
+        "@typescript-eslint/eslint-plugin": "^6.10.0",
+        "@vitejs/plugin-legacy": "^4.1.1",
+        "@vitejs/plugin-vue": "^4.4.1",
+        "@vue/test-utils": "^2.4.1",
+        "cross-env": "^7.0.3",
+        "eslint": "^8.53.0",
+        "eslint-config-prettier": "^9.0.0",
+        "eslint-plugin-import": "^2.29.0",
+        "eslint-plugin-n": "^16.3.0",
+        "eslint-plugin-prettier": "^5.0.1",
+        "eslint-plugin-promise": "^6.1.1",
+        "eslint-plugin-vue": "^9.18.1",
+        "execa": "^8.0.1",
+        "husky": "^8.0.3",
+        "inquirer": "^9.2.12",
+        "jsdom": "^22.1.0",
+        "lint-staged": "^14.0.1",
+        "mockjs": "^1.1.0",
+        "prettier": "^3.0.3",
+        "rollup-plugin-visualizer": "^5.9.2",
+        "sass": "^1.69.5",
+        "stylelint": "^15.11.0",
+        "stylelint-config-rational-order": "^0.1.2",
+        "stylelint-config-standard-vue": "^1.0.0",
+        "terser": "^5.24.0",
+        "typescript": "^5.2.2",
+        "unplugin-auto-import": "^0.16.7",
+        "unplugin-vue-components": "^0.25.2",
+        "vite": "^4.5.0",
+        "vite-plugin-chunk-split": "^0.4.7",
+        "vite-plugin-compression": "^0.5.1",
+        "vite-plugin-mock": "2.9.6",
+        "vitest": "^0.34.6",
+        "vue-tsc": "^1.8.22"
+    }
+}

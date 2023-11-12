@@ -1,0 +1,48 @@
+$el-header-height: 60px;
+
+#app {
+    width: 100vw;
+    min-width: 100vw;
+    height: 100vh;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.el-container {
+    overflow: hidden;
+}
+
+.main-container {
+    height: 100vh;
+}
+
+.el-header {
+    position: fixed;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100vw;
+    height: $el-header-height !important;
+
+    /* background-image background-size backdrop-filter */
+    background-image: radial-gradient(transparent 1px, var(--el-bg-color) 1px);
+    background-size: 4px 4px;
+    border-bottom: 1px solid var(--el-border-color);
+    backdrop-filter: saturate(50%) blur(4px);
+}
+
+.el-aside {
+    display: flex;
+    padding-top: $el-header-height;
+}
+
+.el-main {
+    padding-top: $el-header-height !important;
+    overflow-y: auto;
+    text-align: center;
+}
+
+.el-menu {
+    flex: 1;
+}

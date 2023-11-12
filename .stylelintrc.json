@@ -1,0 +1,6 @@
+{
+    "extends": ["stylelint-config-rational-order", "@ecomfe/stylelint-config", "stylelint-config-standard-vue"],
+    "rules": {
+        "at-rule-no-unknown": null
+    }
+}
