@@ -7,7 +7,7 @@ const routes: Array<RouteRecordRaw> = [
         path: '/',
         name: 'Home',
         meta: {
-            title: '测试首页 - demo-1'
+            title: '测试首页 - demo'
         },
         component: () => import('@Project/views/Home/index.vue')
     }
