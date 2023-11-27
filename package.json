@@ -13,7 +13,8 @@
         "lint": "eslint . --ext .{js,jsx,vue,ts,tsx} --fix",
         "lint:style": "stylelint **/*.{vue,css} --ignore-path .gitignore --fix",
         "prepare": "husky install",
-        "test": "vitest"
+        "test": "vitest",
+        "test:project": "node ./scripts/test.js"
     },
     "lint-staged": {
         "*.{js,jsx,vue,ts,tsx}": [

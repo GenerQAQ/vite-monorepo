@@ -156,10 +156,14 @@ export default defineConfig(({ mode }) => {
             }
         },
         test: {
+            root: resolve(__dirname, '.'),
+            include: [resolve(__dirname, `test/${npm_config_project}/*.{test,spec}.?(c|m)[jt]s?(x)`)],
             globals: true,
             environment: 'jsdom',
-            deps: {
-                inline: ['element-plus']
+            server: {
+                deps: {
+                    inline: ['element-plus']
+                }
             }
         },
         build: {
