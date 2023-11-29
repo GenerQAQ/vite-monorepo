@@ -147,11 +147,11 @@ export default defineConfig(({ mode }) => {
             port: PORT,
             // 服务器自定义代理规则
             proxy: {
-                [env.BASE_URL + env.VITE_APP_BASE_API]: {
+                [`/${npm_config_project}/${env.VITE_APP_BASE_API}`]: {
                     target: `http://${MOCKIP}:${MOCKPORT}`,
                     changeOrigin: true, // 将host header的源更改为target URL
                     ws: true, // 用于代理 WS(S) 请求
-                    rewrite: (path) => path.replace(env.BASE_URL + env.VITE_APP_BASE_API, '')
+                    rewrite: (path) => path.replace(`/${npm_config_project}/${env.VITE_APP_BASE_API}`, '')
                 }
             }
         },

@@ -27,7 +27,7 @@
                 "src/*"
             ],
             "@Project/*": [
-                "src/projects/demo-3/*"
+                "src/projects/demo-1/*"
             ]
         }
     },
