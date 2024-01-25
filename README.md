@@ -65,4 +65,4 @@ pnpm build:all
 `stats.html`是打包文件内容分析
 
 ### Todo List
-- [ ] 思考要不要加Tailwind css
+- [x] 思考要不要加Tailwind css
