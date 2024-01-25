@@ -1,5 +1,6 @@
 import { defineConfig, loadEnv } from 'vite';
 import vue from '@vitejs/plugin-vue';
+import vueJsx from '@vitejs/plugin-vue-jsx';
 import compressionPlugin from 'vite-plugin-compression';
 import { viteMockServe } from 'vite-plugin-mock';
 import { chunkSplitPlugin } from 'vite-plugin-chunk-split';
@@ -10,12 +11,18 @@ import autoImport from 'unplugin-auto-import/vite';
 import components from 'unplugin-vue-components/vite';
 import { visualizer } from 'rollup-plugin-visualizer';
 import { ElementPlusResolver as elementPlusResolver } from 'unplugin-vue-components/resolvers';
+import tailwindcss from 'tailwindcss';
+import autoprefixer from 'autoprefixer';
 
 const PROJECTFOLDER = 'projects';
 const HOST = '0.0.0.0';
 const PORT = 5173;
-const MOCKIP = '0.0.0.0';
-const MOCKPORT = 8222;
+const SERVER: Record<string, { MOCKIP: string; MOCKPORT: number }> = {
+    demo: {
+        MOCKIP: '0.0.0.0',
+        MOCKPORT: 8888
+    }
+};
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -43,30 +50,9 @@ export default defineConfig(({ mode }) => {
         };
     };
 
-    /**
-     * 动态修改tsconfig的paths
-     */
-    fs.readFile('tsconfig.json', 'utf8', (err, data) => {
-        if (err) {
-            throw new Error(`Error reading file: ${err}`);
-        }
-
-        let json = JSON.parse(data);
-
-        // 添加数据
-        json.compilerOptions.paths = {
-            ...json.compilerOptions.paths,
-            '@Project/*': [`src/projects/${npm_config_project}/*`]
-        };
-
-        // 将修改后的JavaScript对象重新保存为JSON文件
-        let jsonString = JSON.stringify(json, null, 4);
-        fs.writeFile('tsconfig.json', jsonString, 'utf8', (err) => {
-            if (err) {
-                return;
-            }
-        });
-    });
+    // 获取对应的本地服务地址
+    const MOCKIP = SERVER[npm_config_project]?.MOCKIP || '';
+    const MOCKPORT = SERVER[npm_config_project]?.MOCKPORT || '';
 
     return {
         root: resolve(__dirname, `src/${PROJECTFOLDER}/${npm_config_project}`),
@@ -75,21 +61,25 @@ export default defineConfig(({ mode }) => {
         resolve: {
             alias: {
                 '@': path.join(__dirname, './src'),
-                '@Project': path.join(__dirname, `./src/${PROJECTFOLDER}/${npm_config_project}`)
+                '@Project': path.join(__dirname, `./src/${PROJECTFOLDER}`)
             }
         },
         css: {
             preprocessorOptions: {
                 scss: {
                     additionalData: `
-                        @use '@Project/styles/element/light.scss';
-                        @use '@Project/styles/element/dark.scss';
+                        @use '@Project/${npm_config_project}/styles/element/light.scss';
+                        @use '@Project/${npm_config_project}/styles/element/dark.scss';
                     `
                 }
+            },
+            postcss: {
+                plugins: [tailwindcss, autoprefixer]
             }
         },
         plugins: [
             vue(),
+            vueJsx(),
             autoImport({
                 imports: ['vue', 'pinia', 'vue-router', '@vueuse/core', 'vitest'],
                 dts: resolve(__dirname, './auto-imports.d.ts'),
@@ -127,6 +117,7 @@ export default defineConfig(({ mode }) => {
                 }
             }),
             legacy({
+                renderLegacyChunks: false,
                 targets: ['defaults', 'not IE 11']
             }),
             compressionPlugin({
@@ -160,10 +151,17 @@ export default defineConfig(({ mode }) => {
             include: [resolve(__dirname, `test/${npm_config_project}/*.{test,spec}.?(c|m)[jt]s?(x)`)],
             globals: true,
             environment: 'jsdom',
+            reporters: ['html'],
+            outputFile: resolve(__dirname, `test/${npm_config_project}/html/index.html`),
             server: {
                 deps: {
                     inline: ['element-plus']
                 }
+            },
+            coverage: {
+                enabled: true,
+                reportsDirectory: resolve(__dirname, `test/${npm_config_project}/coverage`),
+                reporter: ['html']
             }
         },
         build: {

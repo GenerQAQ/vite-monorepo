@@ -9,7 +9,7 @@ const routes: Array<RouteRecordRaw> = [
         meta: {
             title: '测试首页 - demo'
         },
-        component: () => import('@Project/views/Home/index.vue')
+        component: () => import('@Project/template/views/Home/index.vue')
     }
 ];
 

@@ -2,7 +2,7 @@
 import { Sunny, Moon, Calendar } from '@element-plus/icons-vue';
 import { isDark, toggleDark } from '@/utils/dark';
 import { dayjs } from 'element-plus';
-import { useUserStore } from '@Project/store/user';
+import { useUserStore } from '@Project/demo-1/store/user';
 
 const day = ref(dayjs().add(1, 'month').startOf('month'));
 

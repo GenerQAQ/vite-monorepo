@@ -1,2 +1,5 @@
 @use './reset.scss' as *;
 @use './style.scss' as *;
+
+@tailwind components;
+@tailwind utilities;

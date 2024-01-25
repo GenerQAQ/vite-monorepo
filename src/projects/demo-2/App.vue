@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useUserStore } from '@Project/store/user';
+import { useUserStore } from '@Project/demo-2/store/user';
 import { getUser } from '@/api/modules/user';
 import zhCn from 'element-plus/es/locale/lang/zh-cn';
 
