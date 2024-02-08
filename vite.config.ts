@@ -105,7 +105,7 @@ export default defineConfig(({ mode }) => {
                 ]
             }),
             viteMockServe({
-                enabled: mode === 'development' // 在开发环境开启mock
+                enable: mode === 'development' // 在开发环境开启mock
             }),
             chunkSplitPlugin({
                 strategy: 'default',

@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils';
-import { useUserStore } from '@Project/store/user';
-import home from '@Project/views/Home/index.vue';
+import { useUserStore } from '@Project/demo-1/store/user';
+import home from '@Project/demo-1/views/Home/index.vue';
 
 // 单元测试环境下，需要显式的激活pinia
 setActivePinia(createPinia());
