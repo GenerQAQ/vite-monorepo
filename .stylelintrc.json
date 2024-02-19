@@ -1,5 +1,10 @@
 {
-    "extends": ["stylelint-config-rational-order", "@ecomfe/stylelint-config", "stylelint-config-standard-vue"],
+    "extends": [
+        "stylelint-config-rational-order",
+        "@ecomfe/stylelint-config",
+        "stylelint-config-standard-scss",
+        "stylelint-config-standard-vue/scss"
+    ],
     "rules": {
         "at-rule-no-unknown": null,
         "declaration-block-trailing-semicolon": null
