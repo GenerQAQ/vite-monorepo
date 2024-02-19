@@ -7,6 +7,8 @@
     ],
     "rules": {
         "at-rule-no-unknown": null,
-        "declaration-block-trailing-semicolon": null
+        "scss/at-rule-no-unknown": null,
+        "declaration-block-trailing-semicolon": null,
+        "at-rule-empty-line-before": null
     }
 }
